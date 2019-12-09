@@ -1,0 +1,31 @@
+LIBRARY LOGICS PSEUDOCODE
+-------------------------
+
+String StudID
+String BookID
+Datetime Timestamp
+Button Return
+Button Borrow
+
+
+While App == Running
+	If Borrow == 1
+		Run Public List BorrowBookAPI_RequestInfo(StudID, BookID, Timestamp)
+		Return [StudName, BookName, BookUnit, ReturnDate]
+		If StudName == NULL
+			Display("You are not registered as a student/faculty member!")
+		Elif BookName == NULL
+			Display("Book is not registered in the library database!")
+		Else
+			Run Public Void BorrowBookAPI_NewMediaMovement(StudID, StudName, BookID, ReturnDate, Status = Borrowed, Timestamp)
+			Display(StudName + "have successfully borrowed a new media: " + BookName + "at " + Timestamp)
+			Display("Media is expected to be returned at " + ReturnDate)
+
+	If Return == 1
+		Run Public List ReturnBookAPI_RequestInfo(StudID, BookID, Timestamp)
+		Return [IsBorrowed, MediaMovementID, StudName, BookName, BookUnit, IssueDate]
+		If IsBorrowed == False
+			Display("Book is not currently being borrowed or is not registered in library database!")
+		Else
+			Run Public Void ReturnBookAPI_UpdateMediaMovement.txt(MediaMovementID, Status = Returned, Timestamp)
+			Display(BookName + "is successfully returned at " + Timestamp)
