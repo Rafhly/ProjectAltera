@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+     <data>
+        <template id="sheet_report">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="font">
+                        <div class="page">
+                            <br></br>
+                            <div>
+                                Phone : <span t-esc="res_company.phone" />
+                                <br></br>
+                                <u>Mail : <span t-esc="res_company.email" /></u>
+                            </div>
+                            <br></br>
+                            <div class="text-center">
+                                <h3>
+                                    <strong>Attendance Sheet Analysis</strong>
+                                </h3>
+                            </div>
+                            <div class="text-center">
+                                <b>Date: </b>
+                                <span t-esc="attendance_date" />
+                            </div>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>Register : </b>
+                                            <t t-esc='register_id' />
+                                        </td>
+                                        <td>
+                                            <b>Session : </b>
+                                            <t t-esc='session_id' />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <table class="table">
+                                <thead>
+                                    <th>Student Name</th>
+                                    <th>Application No.</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="get_data" t-as="o">
+                                        <td class="text-left">
+                                            <span t-esc="o['name']" />
+                                            <span
+                                                t-raw="'%s' %  o['middle_name'] if  o['middle_name']  else ''" />
+                                            <span
+                                                t-raw="'%s' %   o['last_name']  if  o['last_name']  else ''" />
+                                        </td>
+                                        <td class="text-left">
+                                            <span
+                                                t-raw="'%s' %   o['application_no']  if   o['application_no']   else ''" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <h5><strong>Total Number of Students :</strong>
+                            <span t-esc="get_total_student" /></h5>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <report id="action_report_per_student_attendance"
+                string="Sheets Attendance Report"
+                model="op.attendance.sheet"
+                report_type="qweb-pdf"
+                file="openeducat_attendance.sheet_report"
+                name="openeducat_attendance.sheet_report"
+                menu="True"/>
+    </data>
+</odoo>

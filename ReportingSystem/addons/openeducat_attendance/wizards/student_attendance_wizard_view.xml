@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="student_attendance_form">
+            <field name="name">student.attendance.form</field>
+            <field name="model">op.attendance.sheet</field>
+            <field name="arch" type="xml">
+                <form string="Student Attendance Report">
+                    <group col="4" colspan="4">
+                        <field name="register_id"/>
+                        <field name="attendance_date"/>
+                        
+                    </group>
+                    <footer>
+                        <span groups="base.group_user">
+                            <button string="Print" type="object" name="print_report" class="oe_highlight"/>
+                            <button special="cancel" string="Close" type="object"/>
+                        </span>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="attendance_analysis_act">
+            <field name="name">Attendance Analysis Report</field>
+            <field name="res_model">student.attendance</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="student_attendance_form" />
+            <field name="context">{}</field>
+            <field name="target">new</field>
+        </record>
+
+        <act_window id="student_attendance_act" name="Student Attendance"
+                    res_model="student.attendance" src_model="op.student"
+                    view_mode="form" target="new" view_type="form"
+                    groups="openeducat_core.group_op_back_office_admin"/>
+    </data>
+</odoo>
